@@ -6,13 +6,13 @@
 #include "matcher.h"
 
 /**
- * Scans pattern for next character and sets
+ * Parses pattern for next character and sets
  * necessary parameters that are referenced inside/outside
  * of this function.
  *
  * Add any additional inputs to function signature if necessary.
  */
-char *scan(char *partial_pattern, char *target) {
+char *parse_char(char *partial_pattern, char *target) {
     // You can use this recommended helper function, or not.
     
     return '\0';
