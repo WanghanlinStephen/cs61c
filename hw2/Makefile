@@ -18,7 +18,6 @@ check: clean default
 	test "`echo "abc" | ./rgrep '.b.'`" = "abc"
 	test "`echo "h\naaaaah" | ./rgrep 'a+h'`" = "aaaaah"
 	test "`echo "h\naaaaahhhhh" | ./rgrep 'aa+hh+'`" = "aaaaahhhhh"
-	test "`echo "h\naaaaahhhhh\n" | ./rgrep 'aa+hh+'`" = "aaaaahhhhh"
 	test "`echo "a" | ./rgrep 'a?a'`" = "a"
 	test "`echo "aa" | ./rgrep 'a?a'`" = "aa"
 	@echo "Passed sanity check."
