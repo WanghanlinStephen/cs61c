@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "matcher.h"
+#include <string.h>
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -21,6 +22,10 @@ int main(int argc, char **argv) {
         if (!fgets(buf, sizeof(buf), stdin)) {
             break;
         }
+        //pick out the newline character at the end
+        int last_index = strlen(buf)-1;
+        if (buf[last_index] == '\n') buf[last_index] = '\0';
+
         if (rgrep_matches(buf, argv[1])) {
             fputs(buf, stdout);
             fflush(stdout);
