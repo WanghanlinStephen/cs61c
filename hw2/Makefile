@@ -20,5 +20,16 @@ check: clean default
 	test "`echo "h\naaaaahhhhh" | ./rgrep 'aa+hh+'`" = "aaaaahhhhh"
 	test "`echo "a" | ./rgrep 'a?a'`" = "a"
 	test "`echo "aa" | ./rgrep 'a?a'`" = "aa"
+	test "`echo "woot\nwot\nwat\n" | ./rgrep 'wo?t'`" = "wot"
+	test "`echo "CCCCCCC\nC+\nC++" | ./rgrep '.\+\+'`" = "C++"
+	test "`echo "GG" | ./rgrep '.+'`" = "GG"
+	test "`echo "Boraaaaaaaaaaaa" | ./rgrep 'Bora?.+'`" = "Boraaaaaaaaaaaa"
+	test "`echo "nicknicknic" | ./rgrep '.+k'`" = "nicknicknic"
+	test "`echo "jo" | ./rgrep 'jon+'`" = ""
+	test "`echo "jonMurataaaa" | ./rgrep 'jonMurata+a'`" = "jonMurataaaa"
+	test "`echo "dan garcia" | ./rgrep 'dan ga+arcia'`" = ""
+	test "`echo "Sruthi" | ./rgrep 'Sru\.hi'`" = ""
+	test "`echo "61C homework...\n...can take a long time" | ./rgrep 'work\.+'`" = "61C homework..."
 	@echo "Passed sanity check."
+
 	
