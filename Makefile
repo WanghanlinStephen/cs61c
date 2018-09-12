@@ -22,7 +22,7 @@ run-unit-tests:	unit-tests
 	./$^
 
 check: ${BINARIES}
-	python check.py
+	python2 check.py
 
 clean:
 	rm -rf ${BINARIES} test/output/* unit-tests
