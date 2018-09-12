@@ -46,7 +46,10 @@ Image load_image(char *filename) {
     }
     color_table = (unsigned char *) malloc(
             sizeof(unsigned char) * color_table_size);
-    fread(color_table, sizeof(unsigned char), color_table_size, f);
+    if (color_table_size != fread(color_table, sizeof(unsigned char), color_table_size, f)) {
+        printf ("Failed to read entire color table.\n");
+	exit (1);
+    }
 
     width = readInt(info + 0x12);
     height = readInt(info + 0x16);
@@ -61,7 +64,10 @@ Image load_image(char *filename) {
     row_padding_per_row = (4 - ((width * 1) % 4)) % 4;
     // Load data from bottom to top
     for(row = height - 1; row >= 0; row--) {
-        fread(data + row * width, sizeof(unsigned char), width, f);
+        if (width != fread(data + row * width, sizeof(unsigned char), width, f)) {
+            printf ("Failed to read image row %d. \n", row);
+	    exit (1);
+	}
         if (row_padding_per_row > 0) {
             fseek(f, row_padding_per_row, SEEK_CUR);
         }
