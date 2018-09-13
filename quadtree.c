@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
             qtree_root = depth_to_quad(img.data, img.width);
             print_qtree(qtree_root);
             print_compressed(qtree_root);
-	    free(qtree_root);
+	    free_qtree(qtree_root);
             free(img.data);
         } else {
             width = mask;
