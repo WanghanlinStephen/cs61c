@@ -5,6 +5,7 @@
  * could lead to inconsistency and bugs. */
 #include "../../calc_depth.c"
 #include "../../make_qtree.c"
+#include "../../utils.c"
 #include <CUnit/Basic.h>
 
 /* These are some example unit tests to help test and modularize your code.
