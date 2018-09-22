@@ -10,7 +10,7 @@
 #		qNode *child_NW, *child_NE, *child_SE, *child_SW;
 #	}
 
-q00:   .word  0, 8, 0, 0, 256, 0, 0, 0, 0
+q00:   .word  0, 8, 0, 0,  -1, 0, 0, 0, 0
 
 qx00:  .word  1, 4, 0, 0,   1, 0, 0, 0, 0
 qx40:  .word  0, 4, 4, 0,  -1, 0, 0, 0, 0
