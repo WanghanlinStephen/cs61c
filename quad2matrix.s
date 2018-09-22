@@ -9,7 +9,7 @@
 #
 # Recall that quadtree representation uses the following format:
 #     struct qNode {
-#         bool leaf;
+#         int leaf;
 #         int size;
 #         int x;
 #         int y;
