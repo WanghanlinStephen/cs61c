@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
     # Print debugging output if using sample dataset
     if (options.dataset == "sample"):
-        f = open('your_debug_output.txt', 'w')
+        f = open('./sample_test/your_debug_output.txt', 'w')
         f.write("NUM_REVIEWS dictionary:\n")
         f.write(str(classifier.NUM_REVIEWS))
         f.write("\n\nNUM_WORDS dictionary:\n")
@@ -137,8 +137,12 @@ if __name__ == "__main__":
     # Compare debugging output if using sample dataset
     if options.dataset == "sample":
         f.close()
+        if options.test == "local":
+            staff_output = "./sample_test/staff_debug_output_local.txt"
+        else:
+            staff_output = "./sample_test/staff_debug_output_hive.txt"
         try:
-            subprocess.check_output(["diff", "-u", "staff_debug_output.txt", "your_debug_output.txt"])
+            subprocess.check_output(["diff", "-u", staff_output, "./sample_test/your_debug_output.txt"])
             print("\n\n\n\t\t\t\t\tYOUR SAMPLE OUTPUT MATCHES THE STAFF SAMPLE OUTPUT!")
         except subprocess.CalledProcessError as e:
             print(("\n\n\n\t\t\t\t\tYOUR SAMPLE OUTPUT DOES NOT MATCH THE STAFF SAMPLE OUTPUT. "
