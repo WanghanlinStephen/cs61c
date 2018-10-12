@@ -103,7 +103,6 @@ class YelpClassifier(object):
         # 4. ((num_stars1, review_id), log_likelihood) --> ((num_stars1, review_id), log_posterior)
         # 5. ((num_stars1, review_id), log_posterior) --> (review_id, (num_stars1, log_posterior1)
         # 6. (review_id, (num_stars1, log_posterior1)), (review_id, (num_stars2, log_posterior2)) --> (review_id, (num_stars, max_posterior)
-        # 7. (review_id, (num_stars, max_posterior) --> (review_id, most_likely_num_stars)
 
         predictions = test_rdd \
                             # ._____(_____) \
