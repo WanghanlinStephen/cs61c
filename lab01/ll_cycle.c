@@ -1,12 +1,41 @@
 #include <stdio.h>
 
+#define TRUE 1
+#define FALSE 0
+
 typedef struct node {
 	int value;
 	struct node *next;
 } node;
 
+node *next(node *head);
+
 int ll_has_cycle(node *head) {
 	/* your code here */
+    node *slow, *fast;
+    slow = head;
+    fast = next(head);
+
+    while (fast != NULL) {
+        if (slow == fast) {
+            return TRUE;
+        }
+
+        slow = next(slow);
+        fast = next(next(fast));
+    }
+
+    return FALSE;
+}
+
+// Get the next node of the given node.
+// Return NULL if head is NULL.
+node *next(node *head) {
+    if (head == NULL) {
+        return NULL;
+    } else {
+        return head->next;
+    }
 }
 
 void test_ll_has_cycle(void) {
