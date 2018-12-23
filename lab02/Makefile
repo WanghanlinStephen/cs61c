@@ -2,7 +2,7 @@ UNAME_S := $(shell uname -s)
 CC=gcc
 LD=gcc
 CFLAGS=-ggdb -Wall -std=c99
-LDFLAGS=
+LDFLAGS=-lm
 
 ifeq ($(UNAME_S), Darwin)
     MEMCHECK=valgrind --tool=memcheck --leak-check=full --track-origins=yes --dsymutil=yes --suppressions=osx_vector.supp

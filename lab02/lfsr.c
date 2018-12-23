@@ -3,10 +3,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+void lfsr_calculate(uint16_t *reg);
+
+uint16_t get_bit(const uint16_t v, const uint16_t n);
+
 void lfsr_calculate(uint16_t *reg) {
-
   /* YOUR CODE HERE */
-
+    /*
+     * MSB = bit0 XOR bit2 XOR bit3 XOR bit5
+     */
+    uint16_t value = *reg;
+    uint16_t msb = get_bit(value, 0)
+                 ^ get_bit(value, 2)
+                 ^ get_bit(value, 3)
+                 ^ get_bit(value, 5);
+    *reg = (value >> 1) | (msb << 15);
 }
 
 int main() {
@@ -44,4 +55,8 @@ int main() {
   free(numbers);
 
   return 0;
+}
+
+uint16_t get_bit(const uint16_t v, const uint16_t n) {
+    return (v >> n) & 0x01;
 }
