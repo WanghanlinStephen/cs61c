@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/c,vim,macos,linux,emacs,windows
 
 ### C ###
@@ -54,6 +53,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+<<<<<<< HEAD
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -192,3 +192,5 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/c,vim,macos,linux,emacs,windows
+=======
+>>>>>>> proj1-starter/master
