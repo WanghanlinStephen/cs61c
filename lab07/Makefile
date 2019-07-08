@@ -12,7 +12,10 @@ SOURCES = $(wildcard *.java)
 # Output JAR file
 TARGET = wc.jar
 # Extra JARs to have on the classpath when compiling.
-CLASSPATH = /home/ff/cs61c/hadoop-0.20.2+737/hadoop-core.jar:/home/ff/cs61c/hadoop-0.20.2+737/lib/commons-cli.jar
+HADOOP_COMMON_JAR = $(shell find . -name *hadoop-common*)
+COMMON_CLI_JAR = $(shell find . -name *commons-cli*)
+JAR_PATH = $(shell dirname $(HADOOP_COMMON_JAR))
+CLASSPATH = $(shell echo $(JAR_PATH)/*jar | tr ' ' ':')
 # javac command to use
 JAVAC = javac -g -deprecation -cp $(CLASSPATH)
 # jar command to use
@@ -57,11 +60,11 @@ docwordcount: $(TARGET)
 
 sparkwc-small:
 	rm -rf spark-wc-out-wordcount-small
-	spark-submit wordcount.py /home/ff/cs61c/data/billOfRights.txt.seq spark-wc-out-wordcount-small
+	spark-submit wordcount.py data/billOfRights.txt.seq spark-wc-out-wordcount-small
 
 sparkwc-medium:
 	rm -rf spark-wc-out-wordcount-medium
-	spark-submit wordcount.py /home/ff/cs61c/data/complete-works-mark-twain.txt.seq spark-wc-out-wordcount-medium
+	spark-submit wordcount.py data/complete-works-mark-twain.txt.seq spark-wc-out-wordcount-medium
 
 sparkwc:
 	rm -rf spark-wc-out-wordcount
@@ -69,11 +72,11 @@ sparkwc:
 
 sparkdwc-small:
 	rm -rf spark-wc-out-docwordcount-small
-	spark-submit docwordcount.py /home/ff/cs61c/data/billOfRights.txt.seq spark-wc-out-docwordcount-small
+	spark-submit docwordcount.py data/billOfRights.txt.seq spark-wc-out-docwordcount-small
 
 sparkdwc-medium:
 	rm -rf spark-wc-out-docwordcount-medium
-	spark-submit docwordcount.py /home/ff/cs61c/data/complete-works-mark-twain.txt.seq spark-wc-out-docwordcount-medium
+	spark-submit docwordcount.py data/complete-works-mark-twain.txt.seq spark-wc-out-docwordcount-medium
 
 sparkdwc:
 	rm -rf spark-wc-out-docwordcount
@@ -82,11 +85,11 @@ sparkdwc:
 
 index-small:
 	rm -rf spark-wc-out-index-small
-	spark-submit index.py /home/ff/cs61c/data/billOfRights.txt.seq spark-wc-out-index-small
+	spark-submit index.py data/billOfRights.txt.seq spark-wc-out-index-small
 
 index-medium:
 	rm -rf spark-wc-out-index-medium
-	spark-submit index.py /home/ff/cs61c/data/complete-works-mark-twain.txt.seq spark-wc-out-index-medium
+	spark-submit index.py data/complete-works-mark-twain.txt.seq spark-wc-out-index-medium
 
 index:
 	rm -rf spark-wc-out-index
@@ -94,7 +97,7 @@ index:
 
 
 generate-input: $(TARGET)
-	hadoop jar wc.jar Importer $(myinput)
+	@java -cp $(CLASSPATH):wc.jar Importer $(myinput)
 
 classes:
 	mkdir classes
